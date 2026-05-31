@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş</title>
+    <style>
+        /* Ekran tamamen simsiyah ve temiz */
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000;
+            font-family: sans-serif;
+        }
+        
+        /* Tıklanacak yazı alanı */
+        #yazi-alani {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 999; cursor: pointer; color: #ffffff; text-align: center;
+        }
+
+        /* Video alanı (başlangıçta gizli) */
+        video {
+            position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
+            width: auto; height: auto; z-index: 10; background-size: cover; display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="yazi-alani" onclick="sakaBaslat()">
+        <h1>Merabi</h1>
+    </div>
+
+    <video id="rick-video" loop playsinline>
+        <source src="{{ url_for('static', filename='rick.mp4') }}" type="video/mp4">
+    </video>
+
+    <script>
+        function sakaBaslat() {
+            // Yazıyı tamamen gizle
+            document.getElementById('yazi-alani').style.display = 'none';
+            
+            // Videoyu göster, sesi aç ve oynat
+            var video = document.getElementById("rick-video");
+            video.style.display = 'block';
+            video.muted = false; 
+            video.volume = 1.0;  
+            video.play();        
+        }
+    </script>
+
+</body>
+</html>
